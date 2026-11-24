@@ -2,7 +2,10 @@ compiled.php
 config.php
 down
 events.scanned.php
+<<<<<<< HEAD
 lsp-*.php
+=======
+>>>>>>> a2c916b (login)
 maintenance.php
 routes.php
 routes.scanned.php

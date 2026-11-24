@@ -3,7 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
+=======
+>>>>>>> a2c916b (login)
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+<<<<<<< HEAD
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })
@@ -18,4 +22,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+=======
+    ->withMiddleware(function (Middleware $middleware) {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+>>>>>>> a2c916b (login)
     })->create();

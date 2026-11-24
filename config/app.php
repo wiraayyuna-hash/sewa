@@ -65,7 +65,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'timezone' => 'UTC',
+=======
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
+>>>>>>> a2c916b (login)
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +105,11 @@ return [
 
     'previous_keys' => [
         ...array_filter(
+<<<<<<< HEAD
             explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
+=======
+            explode(',', env('APP_PREVIOUS_KEYS', ''))
+>>>>>>> a2c916b (login)
         ),
     ],
 
@@ -114,7 +122,11 @@ return [
     | manage Laravel's "maintenance mode" status. The "cache" driver will
     | allow maintenance mode to be controlled across multiple machines.
     |
+<<<<<<< HEAD
     | Supported drivers: "file", "cache", "array"
+=======
+    | Supported drivers: "file", "cache"
+>>>>>>> a2c916b (login)
     |
     */
 

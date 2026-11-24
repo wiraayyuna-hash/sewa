@@ -13,8 +13,13 @@ return [
     | incoming requests. Laravel supports a variety of storage options to
     | persist session data. Database storage is a great default choice.
     |
+<<<<<<< HEAD
     | Supported: "file", "cookie", "database", "memcached",
     |            "redis", "dynamodb", "array"
+=======
+    | Supported: "file", "cookie", "database", "apc",
+    |            "memcached", "redis", "dynamodb", "array"
+>>>>>>> a2c916b (login)
     |
     */
 
@@ -32,7 +37,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'lifetime' => (int) env('SESSION_LIFETIME', 120),
+=======
+    'lifetime' => env('SESSION_LIFETIME', 120),
+>>>>>>> a2c916b (login)
 
     'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
 
@@ -97,7 +106,11 @@ return [
     | define the cache store which should be used to store the session data
     | between requests. This must match one of your defined cache stores.
     |
+<<<<<<< HEAD
     | Affects: "dynamodb", "memcached", "redis"
+=======
+    | Affects: "apc", "dynamodb", "memcached", "redis"
+>>>>>>> a2c916b (login)
     |
     */
 
@@ -125,11 +138,19 @@ return [
     | the framework. Typically, you should not need to change this value
     | since doing so does not grant a meaningful security improvement.
     |
+<<<<<<< HEAD
+=======
+    |
+>>>>>>> a2c916b (login)
     */
 
     'cookie' => env(
         'SESSION_COOKIE',
+<<<<<<< HEAD
         Str::slug((string) env('APP_NAME', 'laravel')).'-session'
+=======
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+>>>>>>> a2c916b (login)
     ),
 
     /*
@@ -152,7 +173,11 @@ return [
     |
     | This value determines the domain and subdomains the session cookie is
     | available to. By default, the cookie will be available to the root
+<<<<<<< HEAD
     | domain without subdomains. Typically, this shouldn't be changed.
+=======
+    | domain and all subdomains. Typically, this shouldn't be changed.
+>>>>>>> a2c916b (login)
     |
     */
 
@@ -214,6 +239,7 @@ return [
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
+<<<<<<< HEAD
     /*
     |--------------------------------------------------------------------------
     | Session Serialization
@@ -230,4 +256,6 @@ return [
 
     'serialization' => 'json',
 
+=======
+>>>>>>> a2c916b (login)
 ];

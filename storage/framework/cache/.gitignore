@@ -1,4 +1,7 @@
 *
 !data/
+<<<<<<< HEAD
 !locks/
+=======
+>>>>>>> a2c916b (login)
 !.gitignore

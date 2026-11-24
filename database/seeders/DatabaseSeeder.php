@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\{User,Showroom,Vehicle,Booking,Review,Payout,Block};
@@ -33,4 +34,27 @@ class DatabaseSeeder extends Seeder {
     $s->notify('Pesanan Baru Masuk (#SWG-20261009-041)','Penyewa Rian Hidayat membuat reservasi sewa unit Yamaha NMAX 155cc selama 2 hari dengan metode pembayaran cash di garasi.','order','/partner/pesanan')->update(['read'=>true]);
     $s->notify('Bukti Transfer DP Baru Diunggah','Pengguna Jihan Ammara Shakila telah mengunggah resi transfer DP sebesar Rp 50.000 untuk pemesanan #SWG-20261010-089 (Honda Scoopy Prestige).','payment','/partner/pembayaran');
   }
+=======
+
+namespace Database\Seeders;
+
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        // User::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+    }
+>>>>>>> a2c916b (login)
 }

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{PartnerController as P, StoreController as S, AuthController as A};
 
@@ -43,3 +44,24 @@ Route::prefix('partner')->name('p.')->middleware(['auth'])->group(function () {
     Route::post('/pengaturan/rekening', [P::class, 'saveBank'])->name('sbank');
 });
 if (!function_exists('rp')) { function rp($n) { return 'Rp '.number_format($n, 0, ',', '.'); } }
+=======
+
+use App\Http\Controllers\Auth\RuteKitaAuthController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+Route::get('/login', [RuteKitaAuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [RuteKitaAuthController::class, 'login'])->name('login.submit');
+
+Route::get('/register', [RuteKitaAuthController::class, 'showRegister'])->name('register');
+Route::get('/signup', [RuteKitaAuthController::class, 'showRegister'])->name('signup');
+Route::post('/register', [RuteKitaAuthController::class, 'register'])->name('register.submit');
+
+Route::get('/forgot-password', [RuteKitaAuthController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [RuteKitaAuthController::class, 'forgotPassword'])->name('password.email');
+
+Route::post('/logout', [RuteKitaAuthController::class, 'logout'])->name('logout');
+>>>>>>> a2c916b (login)

@@ -1,4 +1,7 @@
 *
+<<<<<<< HEAD
 !private/
+=======
+>>>>>>> a2c916b (login)
 !public/
 !.gitignore

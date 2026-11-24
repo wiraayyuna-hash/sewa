@@ -26,9 +26,14 @@ return [
     | well as their drivers. You may even define multiple stores for the
     | same cache driver to group types of items stored in your caches.
     |
+<<<<<<< HEAD
     | Supported drivers: "array", "database", "file", "memcached",
     |                    "redis", "dynamodb", "storage", "octane",
     |                    "session", "failover", "null"
+=======
+    | Supported drivers: "apc", "array", "database", "file", "memcached",
+    |                    "redis", "dynamodb", "octane", "null"
+>>>>>>> a2c916b (login)
     |
     */
 
@@ -41,15 +46,22 @@ return [
 
         'database' => [
             'driver' => 'database',
+<<<<<<< HEAD
             'connection' => env('DB_CACHE_CONNECTION'),
             'table' => env('DB_CACHE_TABLE', 'cache'),
             'lock_connection' => env('DB_CACHE_LOCK_CONNECTION'),
             'lock_table' => env('DB_CACHE_LOCK_TABLE'),
+=======
+            'table' => env('DB_CACHE_TABLE', 'cache'),
+            'connection' => env('DB_CACHE_CONNECTION', null),
+            'lock_connection' => env('DB_CACHE_LOCK_CONNECTION', null),
+>>>>>>> a2c916b (login)
         ],
 
         'file' => [
             'driver' => 'file',
             'path' => storage_path('framework/cache/data'),
+<<<<<<< HEAD
             'lock_path' => storage_path('framework/cache/locks'),
         ],
 
@@ -57,6 +69,9 @@ return [
             'driver' => 'storage',
             'disk' => env('CACHE_STORAGE_DISK'),
             'path' => env('CACHE_STORAGE_PATH', 'framework/cache/data'),
+=======
+            'lock_path' => storage_path('framework/cache/data'),
+>>>>>>> a2c916b (login)
         ],
 
         'memcached' => [
@@ -97,6 +112,7 @@ return [
             'driver' => 'octane',
         ],
 
+<<<<<<< HEAD
         'failover' => [
             'driver' => 'failover',
             'stores' => [
@@ -105,6 +121,8 @@ return [
             ],
         ],
 
+=======
+>>>>>>> a2c916b (login)
     ],
 
     /*
@@ -118,6 +136,7 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
 
     /*
@@ -132,5 +151,8 @@ return [
     */
 
     'serializable_classes' => false,
+=======
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
+>>>>>>> a2c916b (login)
 
 ];
