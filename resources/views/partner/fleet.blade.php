@@ -1,0 +1,20 @@
+@extends('layouts.partner')@section('title','Armada')@section('h1','Kelola Armada Kendaraan & Layanan')@section('sub','Manajemen Inventaris Kendaraan & Pengaturan Layanan Antar')
+@section('actions')<button onclick="document.getElementById('add').classList.toggle('hidden')" class="bg-amber-500 text-white rounded-lg px-3 py-2 text-xs font-bold">+ Tambah Kendaraan Baru</button>@endsection
+@section('content')
+<form id="add" method="post" action="{{ route('p.vstore') }}" enctype="multipart/form-data" class="card hidden grid grid-cols-3 gap-3">@csrf
+<input name="name" placeholder="Nama unit" required><input name="plate" placeholder="Plat nomor" required><input name="color" placeholder="Warna" required>
+<select name="type"><option>Motor Matic<option>Motor Maxi<option>Mobil Keluarga</select><input name="price" type="number" placeholder="Harga / hari" required><input type="file" name="image"><button class="btn col-span-3">Simpan Unit</button></form>
+<form method="post" action="{{ route('p.fee') }}" class="card"><h3 class="font-bold text-sm mb-2">Layanan Pengantaran Unit ke Klien</h3><div class="text-[11px] text-slate-500 mb-3">Status Layanan Antar: <b class="text-emerald-700">AKTIF</b></div>@csrf
+<div class="flex gap-3 items-center text-xs">Darussalam/USK <input class="!w-28" name="fee_campus" value="{{ $s->fee_campus }}"> Luar Kampus <input class="!w-28" name="fee_out" value="{{ $s->fee_out }}"><button class="btn">Atur Tarif Pengantaran</button></div></form>
+<div class="card"><div class="flex justify-between mb-4"><h3 class="font-bold text-sm">Daftar Unit Kendaraan Showroom</h3><span class="text-[11px] text-slate-500">Total Armada: {{ $vehicles->count() }} Unit</span></div>
+<div class="flex items-center gap-2 mb-4 text-[11px] font-semibold" id="pills">@foreach([""=>"Semua Unit","Motor Matic"=>"Motor Matic","Motor Maxi"=>"Motor Maxi","Mobil Keluarga"=>"Mobil Keluarga"] as $k=>$l)<button type="button" data-t="{{ $k }}" class="px-3 py-1.5 rounded-full border {{ $k===""?"bg-emerald-700 text-white":"bg-white" }}">{{ $l }}</button>@endforeach<input id="q" class="!w-56 ml-auto" placeholder="Cari nama / plat nomor..."></div>
+<div class="grid grid-cols-4 gap-4" id="fleet">@foreach($vehicles as $v)<div data-type="{{ $v->type }}" data-s="{{ strtolower($v->name.' '.$v->plate) }}" class="border rounded-xl overflow-hidden {{ $v->hidden ? 'opacity-50':'' }}"><div class="relative"><img src="{{ $v->img() }}" class="h-24 w-full object-cover"><span class="absolute top-2 left-2 bg-emerald-800 text-white text-[9px] px-2 py-0.5 rounded">{{ $v->type }}</span></div>
+<div class="p-3"><b class="text-xs">{{ $v->name }}</b><div class="text-[10px] text-slate-500">{{ $v->plate }} • {{ $v->color }}</div><div class="text-emerald-700 font-extrabold text-sm my-1">{{ rp($v->price) }} <small class="text-[10px] text-slate-500 font-normal">/ hari</small></div>
+<form method="post" action="{{ route('p.vupdate',$v) }}" class="space-y-1">@csrf<input type="hidden" name="name" value="{{ $v->name }}"><input type="hidden" name="price" value="{{ $v->price }}">
+<select name="status" onchange="this.form.submit()">@foreach(['ready'=>'Ready (Tersedia)','rented'=>'Rented (Disewa)','service'=>'Servis (Bengkel)'] as $k=>$l)<option value="{{ $k }}" @selected($v->status==$k)>{{ $l }}</option>@endforeach</select></form>
+<form method="post" action="{{ route('p.vtoggle',$v) }}" class="mt-1">@csrf<button class="w-full border rounded-lg text-[11px] py-1">{{ $v->hidden ? 'Tampilkan' : 'Sembunyikan' }}</button></form></div></div>@endforeach</div></div>
+@endsection
+
+@push('x')@endpush
+<script>let T="";const f=()=>document.querySelectorAll("#fleet>div").forEach(e=>e.style.display=(!T||e.dataset.type==T)&&e.dataset.s.includes(q.value.toLowerCase())?"":"none");
+document.querySelectorAll("#pills button").forEach(b=>b.onclick=()=>{T=b.dataset.t;document.querySelectorAll("#pills button").forEach(x=>x.className="px-3 py-1.5 rounded-full border "+(x==b?"bg-emerald-700 text-white":"bg-white"));f()});q.oninput=f</script>
